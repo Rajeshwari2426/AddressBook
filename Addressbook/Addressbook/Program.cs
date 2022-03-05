@@ -8,55 +8,79 @@ namespace Addressbook
 {
     public class Program
     {
+        public static string bookName = "Default";
+
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Progam \n");
 
             CreateAddressBook addressBook = new CreateAddressBook();
-            addressBook.AddContactDetails("Raji", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 9999955555, "raji26@gmail.com");
-            addressBook.AddContactDetails("Yash", "Gandi", "Warangal", "Warangal", "Telangana", 506381,685799999, "yash24@gmail.com");
-           start:
+            addressBook.AddAddressBook("Default");
+            addressBook.AddContactDetails("Raji", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 9999955555, "raji26@gmail.com","Default");
+            addressBook.AddContactDetails("Yash", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 685799999, "yash24@gmail.com","Default");
+        start:
             Console.WriteLine("Please choose an option from the below list");
-            Console.WriteLine("\n 1. Add New Contact \n 2. View Contact \n 3. Edit Contact \n 4. Delete Contact \n5.View contact by first name \n6.Exit\n");
+            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9. Exit\n");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
                 case 1:
-                    addressBook.AddNewContact();
+                    Console.WriteLine("Enter Unique Address Book Name to create: ");
+                    string newBookName = Console.ReadLine();
+                    addressBook.AddAddressBook(newBookName);
+                    if (addressBook.CheckAddressBook(newBookName) == newBookName)
+                    {
+                        bookName = newBookName;
+                        Console.WriteLine($"Switched to: {bookName}");
+                    }
                     break;
                 case 2:
-                    addressBook.ViewContact();
+                    addressBook.AddNewContact(bookName);
                     break;
                 case 3:
-                    Console.WriteLine("Enter the First Name to Edit: ");
-                    string input = Console.ReadLine();
-                    addressBook.EditContact(input);
-                    addressBook.ViewContact();
+                    addressBook.ViewContacts(bookName);
                     break;
                 case 4:
+                    Console.WriteLine("Enter the First Name to View Contact Details: ");
+                    string f_Name = Console.ReadLine();
+                    addressBook.ViewContact(f_Name, bookName);
+                    break;
+                case 5:
+                    Console.WriteLine("Enter the First Name to Edit Contact Details: ");
+                    string input = Console.ReadLine();
+                    addressBook.EditContact(input, bookName);
+                    addressBook.ViewContact(input, bookName);
+                    break;
+                case 6:
                     Console.WriteLine("Enter the First Name of Contact: ");
                     string fName = Console.ReadLine();
                     Console.WriteLine("Enter the Last Name to Delete Contact: ");
                     string lName = Console.ReadLine();
-                    addressBook.DeleteContact(fName, lName);
-                    addressBook.ViewContact();
+                    addressBook.DeleteContact(fName, lName, bookName);
                     break;
-                case 5:
-                    Console.WriteLine("Enter the First Name to View Contact Details: ");
-                    string f_Name = Console.ReadLine();
-                    addressBook.ViewContact(f_Name);
+                case 7:
+                    addressBook.ViewAddressBooks();
                     break;
-                case 6:
+                case 8:
+                    Console.WriteLine("Enter the AddressBook Name to Switch into: ");
+                    string adBookName = Console.ReadLine();
+                    if (addressBook.CheckAddressBook(adBookName) == adBookName)
+                    {
+                        bookName = adBookName;
+                        Console.WriteLine($"Switched to: {bookName}");
+                    }
+                    else
+                        Console.WriteLine("AddressBook Not Found");
+                    break;
+                case 9:
                     Environment.Exit(0);
                     break;
                 default:
                     Console.WriteLine("Please choose the correct option");
-                   goto start;
+                    goto start;
             }
-
             Console.ReadLine();
         }
     }
-    
 }
 
