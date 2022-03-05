@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -343,7 +344,38 @@ namespace Addressbook
                     SortBy(bookName);
                     break;
             }
-
+        }
+        public void WriteToFile()
+        {
+            foreach (var item in addressBookDict)
+            {
+                string path = @"C:\Users\rajar\source\repos\AddressBook\Addressbook\Addressbook\FileIO.txt";
+                if (File.Exists(path))
+                {
+                    StreamWriter sw = File.AppendText(path);
+                    sw.WriteLine("AddressBook Name: " + item.Key);
+                    foreach (var person in item.Value.contactList)
+                    {
+                        sw.WriteLine(person.ToString());
+                    }
+                    sw.Close();
+                    Console.WriteLine(File.ReadAllText(path));
+                }
+            }
+        }
+        public void ReadFile()
+        {
+            string path = @"C:\Users\rajar\source\repos\AddressBook\Addressbook\Addressbook\FileIO.txt";
+            if (File.Exists(path))
+            {                
+                StreamReader sr = File.OpenText(path);
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+                sr.Close();
+            }
         }
 
     }

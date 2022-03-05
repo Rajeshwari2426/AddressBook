@@ -1,0 +1,6 @@
+﻿AddressBook Name: Default
+Raji Gandi Warangal Warangal Telangana 506381 9999955555 raji26@gmail.com
+Yash Gandi Warangal Warangal Telangana 506380 685799999 yash24@gmail.com
+Bujji Gandi hnk hnk Telangana 506001 9999999999 bujji02@gmail.com
+AddressBook Name: xyz
+Mani Gandi Kmm Kmm Telangana 506003 8888999999 mani04@gmail.com
