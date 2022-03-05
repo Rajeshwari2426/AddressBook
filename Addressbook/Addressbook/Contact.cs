@@ -27,5 +27,9 @@ namespace Addressbook
             this.phoneNumber = phoneNumber;
             this.email = email;
         }
+        public override string ToString()
+        {
+            return $"{firstName} {lastName} {address} {city} {state} {zipcode} {phoneNumber} {email}";
+        }
     }
 }
