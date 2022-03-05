@@ -20,14 +20,14 @@ namespace Addressbook
             addressBook.AddAddressBook("Default");
             addressBook.AddAddressBook("xyz");
             addressBook.AddContactDetails("Raji", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 9999955555, "raji26@gmail.com","Default");
-            addressBook.AddContactDetails("Yash", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 685799999, "yash24@gmail.com","Default");
+            addressBook.AddContactDetails("Yash", "Gandi", "Warangal", "Warangal", "Telangana", 506380, 685799999, "yash24@gmail.com","Default");
             addressBook.AddContactDetails("Bujji", "Gandi", "hnk", "hnk", "Telangana", 506001, 9999999999, "bujji02@gmail.com", "Default");
             addressBook.AddContactDetails("Mani", "Gandi", "Kmm","Kmm", "Telangana", 506003, 8888999999, "mani04@gmail.com", "xyz");
 
 
         start:
             Console.WriteLine("Please choose an option from the below list");
-            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9.SearchPerson By City or State\n10.view person by city or state\n11.Number of person by city or state \n12.Sort By Person Alphabetically \n13.Exit\n");
+            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9.SearchPerson By City or State\n10.view person by city or state\n11.Number of person by city or state \n12.Sort By Person Alphabetically \n13.Sort by city-state-zip\n14.Exit\n");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -97,6 +97,10 @@ namespace Addressbook
                     addressBook.SortByName(bookName);
                     break;
                 case 13:
+                    Console.WriteLine("Sort entries:");
+                    addressBook.SortBy(bookName);
+                    break;
+                case 14:
                     Environment.Exit(0);
                     break;
                 default:

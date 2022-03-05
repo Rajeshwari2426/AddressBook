@@ -313,6 +313,38 @@ namespace Addressbook
                 Console.WriteLine(person.ToString());
             }
         }
+        public void SortBy(string bookName)
+        {
+            Console.WriteLine("\nChoose an option \n1.Order by city \n2. Order by state \n3. Order by Zip");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                
+                case 1:
+                    foreach (var person in addressBookDict[bookName].contactList.OrderBy(x => x.city))
+                    {
+                        Console.WriteLine(person.ToString());
+                    }
+                    break;
+                case 2:
+                    foreach (var person in addressBookDict[bookName].contactList.OrderBy(x => x.state))
+                    {
+                        Console.WriteLine(person.ToString());
+                    }
+                    break;
+                case 3:
+                    foreach (var person in addressBookDict[bookName].contactList.OrderBy(x => x.zipcode))
+                    {
+                        Console.WriteLine(person.ToString());
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid Entry");
+                    SortBy(bookName);
+                    break;
+            }
+
+        }
 
     }
 }
