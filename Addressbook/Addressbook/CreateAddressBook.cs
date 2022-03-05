@@ -45,7 +45,7 @@ namespace Addressbook
             ViewContact();
         }
 
-        // View Contact Details of a person
+       // View Contact Details of a person
         public void ViewContact()
         {
             int count = 1;
@@ -61,6 +61,23 @@ namespace Addressbook
                 Console.WriteLine("Phone Number: " + contact.phoneNumber);
                 Console.WriteLine("Email ID: " + contact.email);
                 count++;
+            }
+        }
+        public void ViewContact(string f_Name)
+        {
+            for (int i = 0; i < contactList.Count; i++)
+            {
+                if (contactList[i].firstName == f_Name)
+                {
+                    Console.WriteLine("First Name: " + contactList[i].firstName);
+                    Console.WriteLine("Last Name: " + contactList[i].lastName);
+                    Console.WriteLine("Address: " + contactList[i].address);
+                    Console.WriteLine("City: " + contactList[i].city);
+                    Console.WriteLine("State: " + contactList[i].state);
+                    Console.WriteLine("ZipCode: " + contactList[i].zipcode);
+                    Console.WriteLine("Phone Number: " + contactList[i].phoneNumber);
+                    Console.WriteLine("Email ID: " + contactList[i].email);
+                }
             }
         }
 

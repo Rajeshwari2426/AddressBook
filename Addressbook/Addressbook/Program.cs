@@ -14,9 +14,10 @@ namespace Addressbook
 
             CreateAddressBook addressBook = new CreateAddressBook();
             addressBook.AddContactDetails("Raji", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 9999955555, "raji26@gmail.com");
-            start:
+            addressBook.AddContactDetails("Yash", "Gandi", "Warangal", "Warangal", "Telangana", 506381,685799999, "yash24@gmail.com");
+           start:
             Console.WriteLine("Please choose an option from the below list");
-            Console.WriteLine("\n 1. Add New Contact \n 2. View Contact \n 3. Edit Contact \n 4. Delete Contact \n5. Exit\n");
+            Console.WriteLine("\n 1. Add New Contact \n 2. View Contact \n 3. Edit Contact \n 4. Delete Contact \n5.View contact by first name \n6.Exit\n");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -41,6 +42,11 @@ namespace Addressbook
                     addressBook.ViewContact();
                     break;
                 case 5:
+                    Console.WriteLine("Enter the First Name to View Contact Details: ");
+                    string f_Name = Console.ReadLine();
+                    addressBook.ViewContact(f_Name);
+                    break;
+                case 6:
                     Environment.Exit(0);
                     break;
                 default:
