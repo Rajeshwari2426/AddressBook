@@ -27,7 +27,7 @@ namespace Addressbook
 
         start:
             Console.WriteLine("Please choose an option from the below list");
-            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9.SearchPerson By City or State\n10.view person by city or state\n11.Number of person by city or state \n12.Exit\n");
+            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9.SearchPerson By City or State\n10.view person by city or state\n11.Number of person by city or state \n12.Sort By Person Alphabetically \n13.Exit\n");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -93,6 +93,10 @@ namespace Addressbook
                     addressBook.CountPersonByCityOrState();
                     break;
                 case 12:
+                    Console.WriteLine("\nSort by person Name:");
+                    addressBook.SortByName(bookName);
+                    break;
+                case 13:
                     Environment.Exit(0);
                     break;
                 default:

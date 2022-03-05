@@ -306,6 +306,13 @@ namespace Addressbook
                     break;
             }
         }
+        public void SortByName(string bookName)
+        {
+            foreach (var person in addressBookDict[bookName].contactList.OrderBy(x => x.firstName))
+            {
+                Console.WriteLine(person.ToString());
+            }
+        }
 
     }
 }
