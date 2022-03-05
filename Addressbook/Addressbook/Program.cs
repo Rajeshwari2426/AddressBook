@@ -9,6 +9,8 @@ namespace Addressbook
     public class Program
     {
         public static string bookName = "Default";
+        public static string bookName1 = "xyz";
+
 
         static void Main(string[] args)
         {
@@ -20,11 +22,12 @@ namespace Addressbook
             addressBook.AddContactDetails("Raji", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 9999955555, "raji26@gmail.com","Default");
             addressBook.AddContactDetails("Yash", "Gandi", "Warangal", "Warangal", "Telangana", 506381, 685799999, "yash24@gmail.com","Default");
             addressBook.AddContactDetails("Bujji", "Gandi", "hnk", "hnk", "Telangana", 506001, 9999999999, "bujji02@gmail.com", "Default");
+            addressBook.AddContactDetails("Mani", "Gandi", "Kmm","Kmm", "Telangana", 506003, 8888999999, "mani04@gmail.com", "xyz");
 
 
         start:
             Console.WriteLine("Please choose an option from the below list");
-            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9.SearchPerson By City or State\n10.view person by city or state\n11.Exit\n");
+            Console.WriteLine("\n1. Add New Address Book \n2. Add New Contact \n3. View Contacts \n4. View Contact by Person \n5. Edit Contact \n6. Delete Contact \n7. View all AddressBooks \n8. Switch AddressBook \n9.SearchPerson By City or State\n10.view person by city or state\n11.Number of person by city or state \n12.Exit\n");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -47,13 +50,13 @@ namespace Addressbook
                 case 4:
                     Console.WriteLine("Enter the First Name to View Contact Details: ");
                     string f_Name = Console.ReadLine();
-                    addressBook.ViewContact(f_Name, bookName);
+                    addressBook.ViewContact(f_Name, bookName,bookName1);
                     break;
                 case 5:
                     Console.WriteLine("Enter the First Name to Edit Contact Details: ");
                     string input = Console.ReadLine();
                     addressBook.EditContact(input, bookName);
-                    addressBook.ViewContact(input, bookName);
+                    addressBook.ViewContact(input, bookName,bookName1);
                     break;
                 case 6:
                     Console.WriteLine("Enter the First Name of Contact: ");
@@ -86,6 +89,10 @@ namespace Addressbook
                     addressBook.ViewPersonByCityOrState();
                     break;
                 case 11:
+                    Console.WriteLine("person count by city or state: ");
+                    addressBook.CountPersonByCityOrState();
+                    break;
+                case 12:
                     Environment.Exit(0);
                     break;
                 default:

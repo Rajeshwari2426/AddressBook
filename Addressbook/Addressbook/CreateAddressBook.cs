@@ -74,10 +74,10 @@ namespace Addressbook
         }
 
         //View Contact Details of a person
-        public void ViewContact(string f_Name, string bookName)
+        public void ViewContact(string f_Name, string bookName,string bookName1)
         {
             int x = 0;
-            for (int i = 0; i < addressBookDict[bookName].contactList.Count; i++)
+            for (int i = 0; i < (addressBookDict[bookName].contactList.Count | addressBookDict[bookName1].contactList.Count); i++)
             {
                 if (addressBookDict[bookName].contactList[i].firstName == f_Name)
                 {
@@ -92,6 +92,21 @@ namespace Addressbook
                     Console.WriteLine("Email ID: " + addressBookDict[bookName].contactList[i].email);
                     x = 1;
                     break;
+                }
+                else if(addressBookDict[bookName1].contactList[i].firstName == f_Name)
+                {
+                    Console.WriteLine("contact No. {0}: ", i + 1);
+                    Console.WriteLine("First Name: " + addressBookDict[bookName1].contactList[i].firstName);
+                    Console.WriteLine("Last Name: " + addressBookDict[bookName1].contactList[i].lastName);
+                    Console.WriteLine("Address: " + addressBookDict[bookName1].contactList[i].address);
+                    Console.WriteLine("City: " + addressBookDict[bookName1].contactList[i].city);
+                    Console.WriteLine("State: " + addressBookDict[bookName1].contactList[i].state);
+                    Console.WriteLine("ZipCode: " + addressBookDict[bookName1].contactList[i].zipcode);
+                    Console.WriteLine("Phone Number: " + addressBookDict[bookName1].contactList[i].phoneNumber);
+                    Console.WriteLine("Email ID: " + addressBookDict[bookName1].contactList[i].email);
+                    x = 1;
+                    break;
+
                 }
             }
             if (x == 0)
@@ -253,6 +268,38 @@ namespace Addressbook
                         else
                             Console.WriteLine("No person found for this state");
                     }
+                    break;
+                default:
+                    Console.WriteLine("Choose correct option");
+                    break;
+            }
+        }
+        //UC10 Number of Persons count By City Or State 
+        public void CountPersonByCityOrState()
+        {
+            Console.WriteLine("Choose an option \n1. Person count by city \n2. Person count by state");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                    Console.WriteLine("Enter the city");
+                    string city = Console.ReadLine();
+                    foreach (var book in addressBookDict)
+                    {
+                        var cityResult = book.Value.contactList.FindAll(x => x.city == city);
+                        Console.WriteLine($"Person count by city- {city}: " + cityResult.Count);
+                        break;
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Enter the state");
+                    string state = Console.ReadLine();
+                    foreach (var book in addressBookDict)
+                    {
+                        var stateResult = book.Value.contactList.FindAll(x => x.state == state);
+                        Console.WriteLine($"Person count by state- {state}: " + stateResult.Count);
+                        break;
+                    }                   
                     break;
                 default:
                     Console.WriteLine("Choose correct option");
