@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -376,6 +378,33 @@ namespace Addressbook
                 }
                 sr.Close();
             }
+        }
+        public void WriteCsvFile()
+        {
+            string csvPath = @"C:\Users\rajar\source\repos\AddressBook\Addressbook\Addressbook\AddressBook.csv";
+            StreamWriter sw = new StreamWriter(csvPath);
+            CsvWriter cw = new CsvWriter(sw,CultureInfo.InvariantCulture);
+           
+            foreach (var book in addressBookDict.Values)
+            {
+                cw.WriteRecords<Contact>(book.contactList);
+            }
+            Console.WriteLine("Write the addressBook with person contact as CSV file is Successfull");
+            sw.Flush();
+            sw.Close();
+        }
+        public void ReadCsvFile()
+        {
+            string csvPath = @"C:\Users\rajar\source\repos\AddressBook\Addressbook\Addressbook\AddressBook.csv";
+            StreamReader sr = new StreamReader(csvPath);
+            CsvReader cr = new CsvReader(sr, CultureInfo.InvariantCulture);
+            List<Contact> readResult = cr.GetRecords<Contact>().ToList();
+            Console.WriteLine("Reading from CSV file");
+            foreach (var item in readResult)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            sr.Close();
         }
 
     }
